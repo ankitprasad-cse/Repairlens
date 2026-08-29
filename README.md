@@ -29,6 +29,14 @@ RepairLens aims to make this decision easier using AI-based visual analysis.
 * 🎯 AI confidence level
 * 🌍 Supports a wide range of everyday physical objects
 
+## 📸 Preview
+<img width="863" height="622" alt="WhatsApp Image 2026-08-29 at 14 23 39" src="https://github.com/user-attachments/assets/e84089b6-dd16-439c-a562-61300fb1a061" />
+<img width="839" height="476" alt="WhatsApp Image 2026-08-29 at 14 23 54" src="https://github.com/user-attachments/assets/bb8497d3-a5b4-4a39-a781-5d0fbdd85c78" />
+<img width="914" height="633" alt="WhatsApp Image 2026-08-29 at 14 23 22" src="https://github.com/user-attachments/assets/eb60bff0-28c7-421a-85a3-e18929387e0d" />
+
+
+
+
 ## ⚙️ How It Works
 
 1. **Upload** an image of a damaged object.
