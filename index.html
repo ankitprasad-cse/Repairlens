@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RepairLens — Repair it before you replace it</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="brand-icon">🔧</span>
+        <span class="brand-name">Repair<span>Lens</span></span>
+      </div>
+      <p class="tagline">Repair it before you replace it.</p>
+    </header>
+
+    <!-- Global Error Banner -->
+    <div id="errorBanner" class="error-banner hidden" role="alert">
+      <span id="errorMessage">An unexpected error occurred.</span>
+      <button id="dismissErrorBtn" class="btn-text">✕</button>
+    </div>
+
+    <!-- Main Dynamic Card Area -->
+    <main class="card main-card">
+      
+      <!-- SCREEN 1: UPLOAD & INPUT -->
+      <section id="inputScreen" class="screen active">
+        <div class="section-heading">
+          <h2>Diagnose Your Broken Item</h2>
+          <p>Upload a photo and describe the problem to get an instant repair recommendation.</p>
+        </div>
+
+        <form id="diagnoseForm" onsubmit="return false;">
+          <!-- Dropzone -->
+          <div id="dropZone" class="drop-zone" tabindex="0">
+            <input type="file" id="fileInput" accept="image/png, image/jpeg, image/webp" class="visually-hidden" />
+            
+            <div id="dropPrompt" class="drop-prompt">
+              <div class="upload-icon">📷</div>
+              <p class="primary-prompt"><strong>Click to upload</strong> or drag and drop a photo</p>
+              <span class="file-hint">JPG, PNG, or WEBP (Max 10MB)</span>
+            </div>
+
+            <div id="imagePreviewContainer" class="preview-container hidden">
+              <img id="imagePreview" src="" alt="Uploaded preview" />
+              <button type="button" id="removeImageBtn" class="btn-remove" title="Remove image">✕ Remove</button>
+            </div>
+          </div>
+
+          <!-- Problem Description -->
+          <div class="form-group">
+            <label for="problemDescription">What seems to be the issue? <span class="optional">(Optional)</span></label>
+            <textarea 
+              id="problemDescription" 
+              rows="3" 
+              placeholder="e.g. Table fan won't spin and makes a humming noise when turned on..."
+            ></textarea>
+          </div>
+
+          <!-- Quick Test Presets (Great for Judge Demos) -->
+          <div class="presets-group">
+            <span class="presets-label">Quick Demo Presets:</span>
+            <div class="preset-chips">
+              <button type="button" class="chip" data-preset="fan">Table Fan</button>
+              <button type="button" class="chip" data-preset="charger">Phone Charger</button>
+              <button type="button" class="chip" data-preset="keyboard">Keyboard</button>
+              <button type="button" class="chip" data-preset="chair">Office Chair</button>
+            </div>
+          </div>
+
+          <!-- Submit Action -->
+          <button type="submit" id="analyzeBtn" class="btn btn-primary" disabled>
+            Analyze Item
+          </button>
+        </form>
+      </section>
+
+      <!-- SCREEN 2: ANALYZING (LOADING) -->
+      <section id="loadingScreen" class="screen hidden" aria-live="polite">
+        <div class="loading-content">
+          <div class="scanner-ring">
+            <div class="spinner"></div>
+          </div>
+          <h3 id="loadingStage">Examining uploaded image...</h3>
+          <p class="loading-sub">Our AI is diagnosing the fault and comparing market costs.</p>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: RESULT -->
+      <section id="resultScreen" class="screen hidden">
+        <!-- Top Item Summary -->
+        <div class="result-header">
+          <div>
+            <span id="resultDifficultyBadge" class="badge">Moderate Fix</span>
+            <h2 id="resultItemName">Table Fan</h2>
+          </div>
+        </div>
+
+        <div class="diagnosis-box">
+          <strong>Identified Issue:</strong>
+          <p id="resultDiagnosis">Worn capacitor or seized motor bearings.</p>
+        </div>
+
+        <div class="diagnosis-box">
+          <strong>Suggested Repair:</strong>
+          <p id="resultRepairMethod">Lubricate the motor shaft and replace the starter capacitor.</p>
+        </div>
+
+        <!-- Dominant Recommendation Banner -->
+        <div id="verdictBanner" class="verdict-banner">
+          <span class="verdict-tag">Recommendation</span>
+          <h3 id="verdictTitle">REPAIR RECOMMENDED</h3>
+          <p id="verdictExplanation">Repairing this item costs significantly less than a brand new unit.</p>
+        </div>
+
+        <!-- Cost Comparison Table -->
+        <div class="comparison-grid">
+          <div class="cost-card cost-repair">
+            <span class="cost-title">Estimated Repair</span>
+            <span id="resultRepairCost" class="cost-value">₹300 - ₹500</span>
+          </div>
+
+          <div class="cost-vs">VS</div>
+
+          <div class="cost-card cost-replace">
+            <span class="cost-title">New Replacement</span>
+            <span id="resultReplaceCost" class="cost-value">₹1,800 - ₹2,500</span>
+          </div>
+        </div>
+
+        <!-- Reset Button -->
+        <button type="button" id="resetBtn" class="btn btn-secondary">
+          Analyze Another Item
+        </button>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <p>RepairLens MVP — Hackathon Prototype</p>
+    </footer>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
